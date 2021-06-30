@@ -30,7 +30,7 @@
                         <td>{{ $comic->series }}</td>
                         <td>{{ $comic->sale_date }}</td>
                         <td><a href="{{ route('comics.show',$comic) }}" class="btn btn-success">SHOW</a></td>
-                        <td><a class="btn btn-secondary">EDIT</a></td>
+                        <td><a href="{{ route('comics.edit',$comic) }}" class="btn btn-secondary">EDIT</a></td>
                         <td>
                             <form action="{{ route('comics.destroy',$comic) }}" method="post">
                                 @csrf
