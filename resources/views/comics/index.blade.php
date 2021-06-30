@@ -1,7 +1,16 @@
 @extends('layout.main')
 @section('content')
+
     <main>
+
         <h1 class="mt-5 text-center">I nostri fumetti</h1>
+
+        @if (session('deleted'))
+            <div class="alert alert-danger container" role="alert">
+                <span><strong>{{ session('deleted') }}</strong> Eliminato correttamente</span>
+            </div>
+        @endif
+
         <section class="mt-3 container">
             <table class="table  table-dark">
                 <thead>
@@ -22,9 +31,16 @@
                         <td>{{ $comic->sale_date }}</td>
                         <td><a href="{{ route('comics.show',$comic) }}" class="btn btn-success">SHOW</a></td>
                         <td><a class="btn btn-secondary">EDIT</a></td>
-                        <td><a class="btn btn-primary">DELETE</a></td>
+                        <td>
+                            <form action="{{ route('comics.destroy',$comic) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
+
                 </tbody>
             </table>
             <div>
